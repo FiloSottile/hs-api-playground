@@ -48,13 +48,6 @@ def protected(route):
         # user will be sent to the page they were trying to access
     return wrapper
 
-# def use_authorization_header(uri, headers, body):
-#     print(uri)
-#     print(headers)
-#     print(body)
-#     return uri, headers, body
-# auth.pre_request = use_authorization_header
-
 ## external auth mechanics  ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 @app.route('/login')
@@ -73,7 +66,7 @@ def oauth_authorized(resp):
     try:
         # make a partial login session here, get the username later if this part works
         # keys into resp are probably different for different oauth providers, unfortunately
-        session['login'] = dict(oauth_token=(resp['refresh_token'], resp['access_token']))
+        session['login'] = dict(oauth_token=(resp['access_token'], resp['refresh_token']))
     except TypeError as exc:
         flash('The login request was gracefully declined. (TypeError: %s)' % exc)
         return redirect(url_for('index'))
@@ -85,9 +78,9 @@ def oauth_authorized(resp):
     if me.status == 200:
         session['login']['user'] = '{first_name} {last_name}'.format(**me.data)
         session['login']['email'] = me.data['email']
+        session['login']['image'] = me.data['image']
     else:
         session['login']['user'] = 'Hacker Schooler'
-        session['login']['email'] = None
     flash('You are logged in.')
     return redirect(request.args.get('next') or url_for('index'))
 
