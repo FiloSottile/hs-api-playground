@@ -1,0 +1,19 @@
+<!doctype html>
+<title>HS OAuth2 Test{% block browsertitle %}{% endblock %}</title>
+<div>
+  <a href="{{ url_for('index')  }}">Home</a> |
+  <a href="{{ url_for('hippos') }}">Protected</a> |
+  <a href="{{ url_for('login')  }}">Log In</a> |
+  <a href="{{ url_for('logout') }}">Log Out</a>
+  {% if login %}| Welcome, {{ login.user }}.{% endif %}
+  <hr />
+  <h1>HS OAuth2 Test{% block title %}{% endblock %}</h1>
+  <ul>
+    {% for msg in get_flashed_messages() %}
+      <li>{{ msg }}</li>
+    {% endfor %}
+  </ul>
+  {% block body %}
+    <p>Oauth won't work using a "localhost" or "127.0.0.1" url. Use <code>ifconfig en1 inet</code> or otherwise to find your external IP.</p>
+  {% endblock %}
+</div>
