@@ -4,6 +4,8 @@ Demonstrate use of OAuth2 to connect to Hacker School accounts.
 
 The Hacker School API is documented here: https://wiki.hackerschool.com/index.php/Hacker_School_API
 
+![logged in](https://raw.github.com/plredmond/flask-oauth-hackerschool-py/master/images/loggedin.png)
+
 ## Setup
 
 1. Clone this repo and use `pip install -r requirements` to get the dependencies; you may wish to do this in a [virtual environment](https://docs.python.org/dev/library/venv.html)
@@ -18,7 +20,3 @@ The Hacker School API is documented here: https://wiki.hackerschool.com/index.ph
 
 3. Put those variables in your environment with `$ source keys.sh`
 4. Run the dev server with `$ ./example.py`
-
-## Todo/Fixme
-
-* Fails to get authorized username from hacker school api
