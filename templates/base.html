@@ -1,11 +1,17 @@
 <!doctype html>
 <title>HS OAuth2 Test{% block browsertitle %}{% endblock %}</title>
+<style>img.icon { max-width:1em; max-height:1em; width:auto; height:auto; vertical-align:bottom; }</style>
 <div>
   <a href="{{ url_for('index')  }}">Home</a> |
   <a href="{{ url_for('hippos') }}">Protected</a> |
   <a href="{{ url_for('login')  }}">Log In</a> |
   <a href="{{ url_for('logout') }}">Log Out</a>
-  {% if login %}| Welcome, {{ login.user }}.{% endif %}
+  {% if login %}
+    | Welcome, {{ login.user }}
+    {% if login.image %}
+      <img src="{{ login.image }}" class="icon" />
+    {% endif %}
+  {% endif %}
   <hr />
   <h1>HS OAuth2 Test{% block title %}{% endblock %}</h1>
   <ul>
