@@ -6,6 +6,7 @@ The Hacker School API is documented here: https://wiki.hackerschool.com/index.ph
 
 ## Setup
 
+1. Clone this repo and use `pip install -r requirements` to get the dependencies; you may wish to do this in a [virtual environment](https://docs.python.org/dev/library/venv.html)
 1. Do *Create an OAuth application* on https://www.hackerschool.com/settings
    1. Find your IP with something like `$ ifconfig en1 inet`
    2. Enter the redirect URL as something like `http://[your.ip.addr]:5000/oauth_authorized`
