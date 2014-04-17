@@ -9,7 +9,6 @@ from flask_oauthlib.client import OAuth, OAuthException
 ## flask app and an oauth object  ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 app = Flask(__name__)
-app.debug = True
 app.secret_key = 'dev secret key horses hippos misssspellings etc'
 
 auth = OAuth(app).remote_app(
@@ -103,6 +102,7 @@ def hippos(login=None):
     return render_template('hippos.html', login=login)
 
 if __name__ == '__main__':
+    app.debug = True
     app.run(host='0.0.0.0')
 
 # eof
