@@ -1,2 +1,5 @@
 keys.sh
 ENV/
+__pycache__/
+.*.sw*
+env.sh
