@@ -1,6 +1,6 @@
 # HackerSchool Flask-OAuthlib Example
 
-Demonstrate use of OAuth2 to connect to Hacker School accounts.
+Demonstrate use of OAuth2 to connect to Hacker School accounts. On demo here: http://flask-oauth-hackerschool.herokuapp.com/
 
 The Hacker School API is documented here: https://wiki.hackerschool.com/index.php/Hacker_School_API
 
@@ -20,3 +20,4 @@ The Hacker School API is documented here: https://wiki.hackerschool.com/index.ph
 
 3. Put those variables in your environment with `$ source keys.sh`
 4. Run the dev server with `$ ./example.py`. If you have the heroku toolbelt installed, you can run the prod server with `$ foreman start`
+5. Visit the server in your browser using your IP address in something like `http://[your.ip.addr]:5000/`. Localhost and 127.0.0.1 won't work with OAuth.
