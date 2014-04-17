@@ -19,4 +19,4 @@ The Hacker School API is documented here: https://wiki.hackerschool.com/index.ph
    ```
 
 3. Put those variables in your environment with `$ source keys.sh`
-4. Run the dev server with `$ ./example.py`
+4. Run the dev server with `$ ./example.py`. If you have the heroku toolbelt installed, you can run the prod server with `$ foreman start`
