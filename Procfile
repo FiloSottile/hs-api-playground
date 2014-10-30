@@ -1,1 +1,1 @@
-web: gunicorn example:app
+web: gunicorn playground:app

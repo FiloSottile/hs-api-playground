@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
 import os
+import binascii
+import json
 from functools import wraps
 
 from flask import Flask, session, url_for, flash, redirect, request, render_template
-from flask_oauthlib.client import OAuth, OAuthException
+from flask_oauthlib.client import OAuth
 
 ## flask app and an oauth object  ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 app = Flask(__name__)
-app.secret_key = 'dev secret key horses hippos misssspellings etc'
+app.secret_key = binascii.hexlify(os.urandom(16))
 
 auth = OAuth(app).remote_app(
     'hackerschool'
@@ -56,7 +58,7 @@ def login():
         return redirect(request.referrer or url_for('index'))
     else:
         afterward = request.args.get('next') or request.referrer or None
-        landing = url_for('oauth_authorized', next=afterward, _external=True)
+        landing = '%s?next=%s' % (os.environ.get('REDIRECT_URI'), afterward)
         return auth.authorize(callback=landing)
 
 @app.route('/oauth_authorized')
@@ -92,14 +94,13 @@ def logout():
 
 ## pages ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
-@app.route('/')
-def index():
-    return render_template('base.html', login=get_login())
-
-@app.route('/hippos')
+@app.route('/', methods=["GET", "POST"])
 @protected
-def hippos(login=None):
-    return render_template('hippos.html', login=login)
+def index(login=None):
+    res = None
+    if 'endp' in request.form:
+        res = json.dumps(auth.get(request.form['endp']).data, indent=4)
+    return render_template('index.html', login=login, res=res)
 
 if __name__ == '__main__':
     app.debug = True

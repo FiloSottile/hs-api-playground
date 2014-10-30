@@ -1,0 +1,36 @@
+<!doctype html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<title>HS API playground</title>
+<div class="container">
+
+  <div class="page-header">
+    <h1>HS API Playground</h1>
+  </div>
+
+  <p>
+    Making requests as {{ login.user }}
+  </p>
+
+  <ul>
+    {% for msg in get_flashed_messages() %}
+      <li>{{ msg }}</li>
+    {% endfor %}
+  </ul>
+
+  <div class="alert alert-info" role="alert">
+    <a href="https://github.com/hackerschool/wiki/wiki/Hacker-School-API">Click here for the API docs</a>
+  </div>
+
+  <form role="form" method="post">
+    <div class="form-group">
+      <label for="endp">Enter your API query</label>
+      <input type="text" class="form-control" id="endp" name="endp" placeholder="people/me">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+
+  {% if res %}
+    <code><pre>{{ res }}</pre></code>
+  {% endif %}
+</div>
